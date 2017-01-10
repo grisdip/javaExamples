@@ -22,10 +22,11 @@ public class TestA {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        getConsecutiveNumbers(8,"ANNA BAKES 80 CAKES 647 IN THE NOON, 989216011 CI,VIC level");
+        Set<String> result = getConsecutiveNumbers(8,"ANNA BAKES 80 CAKES 647 IN THE NOON, 989216011 CI,VIC level");
+        System.out.println(result);
     }
     
-    public static void getConsecutiveNumbers(int nVal, String strVal){
+    public static Set<String> getConsecutiveNumbers(int nVal, String strVal){
        
         List<String> numValues = new ArrayList<String>(); 
         List<String> strValues = new ArrayList<String>(); 
@@ -38,10 +39,9 @@ public class TestA {
         }
         
         Set<String> numbers = getGreatestNumber(nVal,numValues);
-        printResult(numbers);
         Set<String> palindromeWord = palindromes(strValues);
-        printResult(palindromeWord);
-        
+        numbers.addAll(palindromeWord);
+        return numbers;      
      }
     
     private static Set<String> getGreatestNumber(int val, List<String> sValues) {
@@ -69,7 +69,7 @@ public class TestA {
         for (String strValue : strValues) {
             stringPal = strValue;
                 if (stringPal.equals(new StringBuilder(stringPal).reverse().toString())) {
-                        palindromeWords.add(stringPal);
+                        palindromeWords.add(stringPal.toUpperCase());
                 }
         }
         
